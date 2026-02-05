@@ -14,7 +14,7 @@ export default function Login({ setToken }) {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login', {
+      const response = await axios.post('http://3.80.89.170:8000/api/login', {
         email,
         password,
       });
