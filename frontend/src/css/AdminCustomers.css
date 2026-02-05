@@ -1,0 +1,253 @@
+.admin-customers {
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #f8fafc;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1f2937;
+}
+
+/* Header */
+.page-header {
+  margin-bottom: 2.25rem;
+}
+
+.page-header h1 {
+  font-size: clamp(1.8rem, 5vw, 2.25rem);
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.375rem;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 1.05rem;
+}
+
+/* Desktop Table */
+.desktop-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.05);
+}
+
+.desktop-table th,
+.desktop-table td {
+  padding: 1.1rem 1.25rem;
+  text-align: left;
+}
+
+.desktop-table th {
+  background: #f1f5f9;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.desktop-table td {
+  border-top: 1px solid #e5e7eb;
+  color: #4b5563;
+}
+
+.desktop-table tr:hover {
+  background: #f8fafc;
+}
+
+.inactive-row {
+  background: #fff5f5;
+  color: #991b1b;
+}
+
+.inactive-row:hover {
+  background: #fee2e2;
+}
+
+/* Status Badge */
+.status-badge {
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-badge.inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Action Button */
+.action-btn {
+  padding: 0.55rem 1.1rem;
+  border: none;
+  border-radius: 0.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-size: 0.92rem;
+}
+
+.action-btn.deactivate {
+  background: #ef4444;
+  color: white;
+}
+
+.action-btn.deactivate:hover {
+  background: #dc2626;
+}
+
+.action-btn.activate {
+  background: #10b981;
+  color: white;
+}
+
+.action-btn.activate:hover {
+  background: #059669;
+}
+
+.action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mobile Card View */
+.mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.customer-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.customer-card.inactive {
+  background: #fff5f5;
+  border-left: 4px solid #ef4444;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.25rem 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.customer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.customer-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.customer-id {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.card-details {
+  padding: 0.75rem 1.25rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.card-actions {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #f1f5f9;
+  text-align: right;
+}
+
+/* States */
+.skeleton-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.skeleton-card {
+  height: 180px;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  border-radius: 1rem;
+  animation: loading 1.6s infinite;
+}
+
+@keyframes loading {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.empty-state,
+.error-message {
+  text-align: center;
+  padding: 6rem 1.5rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  color: #6b7280;
+  font-size: 1.15rem;
+}
+
+.error-message {
+  color: #dc2626;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .desktop-table {
+    display: none;
+  }
+  
+  .mobile-cards {
+    display: flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile-cards {
+    display: none;
+  }
+  
+  .customers-container {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  }
+}

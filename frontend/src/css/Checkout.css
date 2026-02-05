@@ -1,0 +1,261 @@
+.checkout-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+  padding: clamp(1.5rem, 4vw, 3rem) 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.checkout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.checkout-title {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: white;
+  padding: 2rem;
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 700;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+@media (min-width: 992px) {
+  .checkout-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.8rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+
+.section-title {
+  margin: 0 0 1.6rem;
+  color: #111827;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Summary Card */
+.items-list {
+  margin-bottom: 1.8rem;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.item-qty {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.item-total {
+  font-weight: 700;
+  color: #1d4ed8;
+  font-size: 1.1rem;
+}
+
+.total-section .total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.45rem;
+  font-weight: 700;
+  padding-top: 1.2rem;
+  border-top: 2px solid #e5e7eb;
+  margin-top: 1rem;
+}
+
+.grand-total {
+  color: #1e40af;
+}
+
+/* Form Card */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.6rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  background: #ffffff;
+  color: #0f172a;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin: 1.2rem 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1.1rem;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 0.85rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+.submit-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Spinner inside button */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success Page */
+.success-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.success-card {
+  background: white;
+  padding: 3.5rem 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+  text-align: center;
+  max-width: 520px;
+  width: 100%;
+}
+
+.success-icon {
+  font-size: 6rem;
+  margin-bottom: 1.8rem;
+}
+
+.success-card h2 {
+  color: #065f46;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.success-message {
+  font-size: 1.3rem;
+  color: #374151;
+  margin-bottom: 1.2rem;
+}
+
+.success-subtext {
+  color: #64748b;
+  margin-bottom: 2.2rem;
+}
+
+.return-btn {
+  padding: 1.1rem 3rem;
+  background: linear-gradient(90deg, #10b981, #059669);
+  color: white;
+  border: none;
+  border-radius: 0.9rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.return-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.3);
+}

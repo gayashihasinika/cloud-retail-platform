@@ -1,0 +1,65 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: cloud-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: auth_db
+      MYSQL_USER: auth_user
+      MYSQL_PASSWORD: auth_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  auth-service:
+    build: ./services/auth-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./services/auth-service:/var/www
+    depends_on:
+      - mysql
+
+  product-service:
+    build: ./services/product-service
+    ports:
+      - "8001:8001"   # container:host
+    volumes:
+      - ./services/product-service:/var/www
+    depends_on:
+      - mysql
+    command: php artisan serve --host=0.0.0.0 --port=8001
+
+  order-service:
+    build: ./services/order-service
+    ports:
+      - "8002:8000"
+    volumes:
+      - ./services/order-service:/var/www
+    depends_on:
+      - mysql
+
+  notification-service:
+    build: ./services/notification-service
+    ports:
+      - "8003:8000"
+    volumes:
+      - ./services/notification-service:/var/www
+    depends_on:
+      - mysql
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"   # host port : container port
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - auth-service
+      - product-service
+      - order-service
+
+volumes:
+  mysql_data:

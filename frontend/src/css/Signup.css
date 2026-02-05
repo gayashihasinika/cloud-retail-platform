@@ -1,0 +1,205 @@
+/* ==========================================================================
+   FULL-SCREEN SIGNUP PAGE — Matches Login Style
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.signup-full-page {
+  height: 100vh;
+  width: 100vw;
+  min-height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Background gradient */
+.signup-background {
+  flex: 1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  width: 100%;
+}
+
+/* Card wrapper */
+.signup-card-wrapper {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card */
+.signup-card {
+  background: white;
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* Header */
+.signup-header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  padding: 2.8rem 2rem 2.2rem;
+  text-align: center;
+}
+
+.signup-header h1 {
+  font-size: clamp(1.9rem, 6vw, 2.4rem);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.5px;
+}
+
+.signup-header p {
+  font-size: 1.05rem;
+  opacity: 0.92;
+}
+
+/* Form */
+.signup-form {
+  padding: 2.25rem 2.5rem 1.75rem;
+}
+
+.form-group {
+  margin-bottom: 1.75rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.97rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  background: #ffffff;              /* pure white for better contrast */
+  color: #0f172a !important;        /* very dark text – always visible */
+  -webkit-text-fill-color: #0f172a !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+  background: white;
+}
+
+.form-group input::placeholder {
+  color: #94a3b8;
+}
+
+/* Select styling */
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  padding-right: 2.5rem;
+}
+
+/* Button */
+.signup-btn {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to right, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  border-radius: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 1.2rem;
+}
+
+.signup-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(99, 102, 241, 0.35);
+}
+
+.signup-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Login link section */
+.login-section {
+  padding: 0 2.5rem 2.5rem;
+  text-align: center;
+  border-top: 1px solid #f1f5f9;
+}
+
+.login-section p {
+  margin: 1.6rem 0 0.9rem;
+  color: #6b7280;
+  font-size: 0.98rem;
+}
+
+.login-link {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background: #f3f4f6;
+  color: #4f46e5;
+  border-radius: 0.8rem;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.login-link:hover {
+  background: #e0e7ff;
+  color: #4338ca;
+  transform: translateY(-1px);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .signup-background {
+    padding: 1rem;
+  }
+  .signup-card {
+    border-radius: 1rem;
+  }
+  .signup-header {
+    padding: 2.2rem 1.6rem 1.8rem;
+  }
+  .signup-form,
+  .login-section {
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+  }
+}
