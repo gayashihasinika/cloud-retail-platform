@@ -1,11 +1,13 @@
 import axios from 'axios';
 // frontend/src/api/adminDashboard.js
 
+const API_URL = import.meta.env.VITE_AUTH_API_URL;
+
 export const getAdminDashboard = async () => {
   const token = localStorage.getItem('token');
 
   const response = await axios.get(
-    'http://127.0.0.1:8000/api/admin/dashboard',
+    `${API_URL}/api/admin/dashboard`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

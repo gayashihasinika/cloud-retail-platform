@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import '../css/Login.css';
 
+const API_URL = import.meta.env.VITE_AUTH_API_URL;
+
 export default function Login({ setToken }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,7 +16,7 @@ export default function Login({ setToken }) {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://3.80.89.170:8000/api/login', {
+      const response = await axios.post(`${API_URL}/api/login`, {
         email,
         password,
       });
