@@ -39,7 +39,7 @@ services:
   order-service:
     build: ./services/order-service
     ports:
-      - "8002:8000"
+      - "8002:8002"
     volumes:
       - ./services/order-service:/var/www
       - /var/www/vendor
