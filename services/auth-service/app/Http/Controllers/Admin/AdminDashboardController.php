@@ -1,29 +1,33 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-// services/auth-service/app/Http/Controllers/Admin/AdminDashboardController.php
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
 
-const PRODUCT_API_URL = import.meta.env.VITE_PRODUCT_API_URL;
-
 class AdminDashboardController extends Controller
 {
+    private $productServiceUrl;
+    private $orderServiceUrl;
+
+    public function __construct()
+    {
+        $this->productServiceUrl = env('PRODUCT_SERVICE_URL', 'http://product-service:8001');
+        $this->orderServiceUrl = env('ORDER_SERVICE_URL', 'http://order-service:8002');
+    }
+
     public function index()
     {
         try {
-            // Product service
-            
-                $productsResponse = Http::timeout(5)->get(`${PRODUCT_API_URL}/api/products/count`);
+            $productsResponse = Http::timeout(5)->get($this->productServiceUrl . '/api/products/count');
 
             $totalProducts = $productsResponse->successful()
                 ? ($productsResponse->json('count') ?? 0)
                 : 0;
 
-            // Order service
-            $ordersResponse = Http::timeout(5)->get('http://order-service:8000/api/orders/dashboard');
+            $ordersResponse = Http::timeout(5)->get($this->orderServiceUrl . '/api/orders/dashboard');
 
             $ordersData = $ordersResponse->successful()
                 ? ($ordersResponse->json() ?? [])
