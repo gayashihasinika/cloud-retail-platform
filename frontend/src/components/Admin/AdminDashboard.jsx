@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../css/AdminDashboard.css';
 
-const PRODUCT_API_URL = 'http://127.0.0.1:8001/api';
+const PRODUCT_API_URL = import.meta.env.VITE_PRODUCT_API_URL;
 
 export default function AdminDashboard() {
   const [products, setProducts] = useState([]);
@@ -172,7 +172,7 @@ export default function AdminDashboard() {
                   <img
                     src={
                       p.image
-                        ? `http://127.0.0.1:8001/storage/${p.image}`
+                        ? `${PRODUCT_API_URL}/storage/${p.image}`
                         : '/placeholder.png'
                     }
                     alt={p.name}

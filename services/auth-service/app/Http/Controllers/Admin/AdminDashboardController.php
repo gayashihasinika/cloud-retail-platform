@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
 
+const PRODUCT_API_URL = import.meta.env.VITE_PRODUCT_API_URL;
+
 class AdminDashboardController extends Controller
 {
     public function index()
@@ -14,7 +16,7 @@ class AdminDashboardController extends Controller
         try {
             // Product service
             
-                $productsResponse = Http::timeout(5)->get('http://product-service:8001/api/products/count');
+                $productsResponse = Http::timeout(5)->get(`${PRODUCT_API_URL}/api/products/count`);
 
             $totalProducts = $productsResponse->successful()
                 ? ($productsResponse->json('count') ?? 0)

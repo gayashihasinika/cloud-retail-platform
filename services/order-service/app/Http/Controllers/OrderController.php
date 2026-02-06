@@ -10,6 +10,8 @@ use App\Models\OrderItem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+const PRODUCT_API_URL = import.meta.env.VITE_PRODUCT_API_URL;
+
 class OrderController extends Controller
 {
 
@@ -45,7 +47,7 @@ public function createFromCart(Request $request)
             ]);
 
             // Decrease stock
-            Http::patch("http://product-service:8001/api/products/{$item['product_id']}/stock", [
+            Http::patch(`${PRODUCT_API_URL}/api/products/{$item['product_id']}/stock`, [
                 'quantity'  => $item['quantity'],
                 'operation' => 'decrease',
             ]);
@@ -78,7 +80,7 @@ public function createFromCart(Request $request)
 
                 try {
                     $response = Http::timeout(3)
-                        ->get("http://product-service:8001/api/products/{$item->product_id}");
+                        ->get(`${PRODUCT_API_URL}/api/products/{$item->product_id}`);
 
                     if (!$response->successful()) {
                         Log::warning('Product service failed', [
@@ -141,7 +143,7 @@ public function getAllOrders()
 
                 try {
                     $response = Http::timeout(3)
-                        ->get("http://product-service:8001/api/products/{$item->product_id}");
+                        ->get(`${PRODUCT_API_URL}/api/products/{$item->product_id}`);
 
                     if (!$response->successful()) {
                         Log::warning('Product service failed', [

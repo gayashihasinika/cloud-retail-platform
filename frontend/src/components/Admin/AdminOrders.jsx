@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../css/Orders.css';
 
+const ORDER_API_URL = import.meta.env.VITE_ORDER_API_URL;
+
 export default function AdminOrders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,7 +12,7 @@ export default function AdminOrders() {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://127.0.0.1:8002/api/admin/orders', {
+      const res = await axios.get(`${ORDER_API_URL}/api/admin/orders`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrders(res.data || []);
@@ -30,7 +32,7 @@ export default function AdminOrders() {
     try {
       const token = localStorage.getItem('token');
       await axios.patch(
-        `http://127.0.0.1:8002/api/admin/orders/${orderId}/status`,
+        `${ORDER_API_URL}/api/admin/orders/${orderId}/status`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );

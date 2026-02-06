@@ -1,27 +1,32 @@
 FROM php:8.3-fpm
 
-# Install system dependencies
+# 1. Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
     unzip \
     libzip-dev \
-    libpng-dev \
-    && docker-php-ext-install pdo pdo_mysql zip
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# Install Composer
+# 2. Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# 3. Working directory
 WORKDIR /var/www
 
-# Copy project files
+# 4. Copy project files
 COPY . .
 
-# Install PHP dependencies
-RUN composer install --no-interaction --prefer-dist
+# 5. Vendor folders
+RUN chown -R www-data:www-data /var/www \
+    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+# 6. Port 8000 open
+EXPOSE 8002
 
-EXPOSE 8000
-
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+# 7. Server start
+CMD php artisan serve --host=0.0.0.0 --port=8002

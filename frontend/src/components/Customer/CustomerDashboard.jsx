@@ -4,6 +4,8 @@ import { getProducts } from '../../api/products';
 import { addToCart, getCart } from '../../api/cart';
 import '../../css/CustomerDashboard.css';
 
+const PRODUCT_API_URL = import.meta.env.VITE_PRODUCT_API_URL;
+
 export default function CustomerDashboard() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState('');
@@ -123,7 +125,7 @@ export default function CustomerDashboard() {
                 <img
                   src={
                     product.image
-                      ? `http://127.0.0.1:8001/storage/${product.image}`
+                      ? `${PRODUCT_API_URL}/storage/${product.image}`
                       : 'https://via.placeholder.com/400x300?text=No+Image'
                   }
                   alt={product.name}

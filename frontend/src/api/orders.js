@@ -2,11 +2,13 @@
 
 import axios from 'axios';
 
+const ORDER_API_URL = import.meta.env.VITE_ORDER_API_URL;
+
 export const buyNow = async (productId) => {
   const token = localStorage.getItem('token');
 
   const response = await axios.post(
-    'http://127.0.0.1:8002/api/orders/buy-now',   // ← Changed from 8001 to 8002
+    `${ORDER_API_URL}/api/orders/buy-now`,   
     {
       product_id: productId,
       quantity: 1,
@@ -27,7 +29,7 @@ export const createOrderFromCart = async (orderData) => {
   if (!token) throw new Error('Please login to place order');
 
   const response = await axios.post(
-    'http://127.0.0.1:8002/api/orders/from-cart',
+    `${ORDER_API_URL}/api/orders/from-cart`,
     orderData,
     {
       headers: {
@@ -44,7 +46,7 @@ export const getMyOrders = async () => {
   const token = localStorage.getItem('token');
 
   const response = await axios.get(
-    'http://127.0.0.1:8002/api/orders/my',
+    `${ORDER_API_URL}/api/orders/my`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -60,7 +62,7 @@ export const getMyOrders = async () => {
 export const getAllOrders = async () => {
   const token = localStorage.getItem('token');
   const response = await axios.get(
-    'http://127.0.0.1:8002/api/orders/all',
+    `${ORDER_API_URL}/api/orders/all`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

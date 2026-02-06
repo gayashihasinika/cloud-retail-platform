@@ -1,6 +1,6 @@
 FROM php:8.3-fpm
 
-# Install system dependencies
+# 1. Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -9,28 +9,24 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+    libzip-dev \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# Set working directory
+# 2. Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# 3. Working directory
 WORKDIR /var/www
 
-# Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/
+# 4. Copy project files
+COPY . .
 
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# 5. Vendor folders
+RUN chown -R www-data:www-data /var/www \
+    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
-# Install dependencies
-RUN composer install --no-dev --no-scripts --no-autoloader
-
-# Copy project files
-COPY . /var/www
-
-# Install autoload
-RUN composer dump-autoload
-
-# Expose port 8001
+# 6. Port 8000 open
 EXPOSE 8001
 
-# Run Laravel server
+# 7. Server start
 CMD php artisan serve --host=0.0.0.0 --port=8001
