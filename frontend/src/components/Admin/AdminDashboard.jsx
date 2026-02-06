@@ -29,7 +29,7 @@ export default function AdminDashboard() {
   const fetchProducts = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`${PRODUCT_API_URL}/products`, {
+      const res = await axios.get(`${PRODUCT_API_URL}/api/products`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts(res.data);
@@ -100,12 +100,12 @@ export default function AdminDashboard() {
 
     try {
       if (formMode === 'add') {
-        await axios.post(`${PRODUCT_API_URL}/products`, data, {
+        await axios.post(`${PRODUCT_API_URL}/api/products`, data, {
           headers: { Authorization: `Bearer ${token}` },
         });
       } else {
         await axios.post(
-          `${PRODUCT_API_URL}/products/${formData.id}?_method=PUT`,
+          `${PRODUCT_API_URL}/api/products/${formData.id}?_method=PUT`,
           data,
           { headers: { Authorization: `Bearer ${token}` } }
         );
