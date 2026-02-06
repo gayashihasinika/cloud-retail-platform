@@ -10,10 +10,11 @@ use App\Models\OrderItem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-const PRODUCT_API_URL = import.meta.env.VITE_PRODUCT_API_URL;
+
 
 class OrderController extends Controller
 {
+    $PRODUCT_API_URL = env('APP_URL', 'http://13.218.85.103');
 
 public function createFromCart(Request $request)
 {
