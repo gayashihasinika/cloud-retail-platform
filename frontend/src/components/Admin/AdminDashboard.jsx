@@ -51,18 +51,18 @@ export default function AdminDashboard() {
     if (search.trim()) {
       data = data.filter((p) =>
         (p.name || '')
-  .toLowerCase()
-  .includes(search.toLowerCase().trim())
+          .toLowerCase()
+          .includes(search.toLowerCase().trim())
 
       );
     }
 
     if (categoryFilter !== 'all') {
       data = data.filter(
-  (p) =>
-    p.category &&
-    p.category.toLowerCase() === categoryFilter.toLowerCase()
-);
+        (p) =>
+          p.category &&
+          p.category.toLowerCase() === categoryFilter.toLowerCase()
+      );
 
     }
 
@@ -116,6 +116,22 @@ export default function AdminDashboard() {
       alert('Error saving product');
     }
   };
+
+  const handleDisable = async (id) => {
+    if (!window.confirm('Are you sure you want to disable this product?')) return;
+
+    const token = localStorage.getItem('token');
+
+    try {
+      await axios.delete(`${PRODUCT_API_URL}/api/products/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      fetchProducts();
+    } catch (err) {
+      alert('Error disabling product');
+    }
+  };
+
 
   return (
     <div className="admin-dashboard">
@@ -193,7 +209,12 @@ export default function AdminDashboard() {
                     <button className="btn edit" onClick={() => openForm('edit', p)}>
                       Edit
                     </button>
-                    <button className="btn delete">Disable</button>
+                    <button
+                      className="btn delete"
+                      onClick={() => handleDisable(p.id)}
+                    >
+                      Disable
+                    </button>
                   </div>
                 </div>
               </div>
