@@ -23,7 +23,7 @@ class AuthServiceMiddleware
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        $authServiceUrl = env('AUTH_SERVICE_URL', 'http://13.218.85.103:8000');
+        $authServiceUrl = env('AUTH_SERVICE_URL', 'http://3.80.118.165:8000');
 
         $response = Http::withHeaders([
             'Authorization' => "Bearer {$token}",
