@@ -120,22 +120,6 @@ export default function CustomerDashboard() {
         <div className="products-grid">
           {products.map((product) => (
             <div key={product.id} className="product-card">
-              {/* Product Image */}
-              <div className="product-image-container">
-                <img
-                  src={
-                    product.image
-                      ? `${PRODUCT_API_URL}/storage/${product.image}`
-                      : 'https://via.placeholder.com/400x300?text=No+Image'
-                  }
-                  alt={product.name}
-                  className="product-image"
-                  loading="lazy"
-                  onError={(e) => {
-                    e.target.src = 'https://via.placeholder.com/400x300?text=Image+Error';
-                  }}
-                />
-              </div>
 
               {/* Product Info */}
               <div className="product-info">
