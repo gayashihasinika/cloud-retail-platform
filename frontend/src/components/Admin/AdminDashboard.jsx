@@ -184,16 +184,6 @@ export default function AdminDashboard() {
           ) : (
             filtered.map((p) => (
               <div key={p.id} className="product-card">
-                <div className="card-image">
-                  <img
-                    src={
-                      p.image
-                        ? `${PRODUCT_API_URL}/storage/${p.image}`
-                        : '/placeholder.png'
-                    }
-                    alt={p.name}
-                  />
-                </div>
                 <div className="card-content">
                   <h3>{p.name}</h3>
                   <p className="description">{p.description}</p>
