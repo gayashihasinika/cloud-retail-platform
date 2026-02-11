@@ -15,7 +15,7 @@ class OrderController extends Controller
 
     public function __construct()
     {
-        $this->productApiUrl = env('API_URL', 'http://3.80.118.165:8001');
+        $this->productApiUrl = env('API_URL', 'http://50.17.37.0:8001');
     }
 
     public function createFromCart(Request $request)
